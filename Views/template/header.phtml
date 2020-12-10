@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/css/my-style.css" rel="stylesheet">
+
+    <title>Server-Side Programming - <?php echo $view->pageTitle; ?></title>
+</head>
+
+<body role="" document
+">
+
+<div class="container">
+    <div class="row">
+        <div id="title" class="col-xs-12">
+            <div class="pull-right"><h1><?php echo $view->pageTitle ?>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Trainers</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="adverts.php">Post Ad</a></li>
+                        <li><a href="trainers.php">Trainers</a></li>
+                        <li><a href="wishlist.php">Watchlist</a></li>
+
+                        <li><a href="MapItems.php">Location</a></li>
+                        <li><a href="showInfo.php">Show Info</a></li>
+                        <li><a href="register.php">Register</a></li>
+
+                        <?php
+                        if (isset($_SESSION['username'])) {
+                            echo '<li><a href="logout.php">Log out</a></li>';
+                        } else {
+                            echo '  <li><a href="login.php">Log In</a></li>';
+                        } ?>
+
+
+                    </ul>
+                </div>
+            </nav>
+
+
+            <div id="content" class="col-xs-6 col-sm-9 col-md-10">

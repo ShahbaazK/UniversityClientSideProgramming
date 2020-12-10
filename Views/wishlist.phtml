@@ -1,0 +1,69 @@
+<?php require('template/header.phtml') ?>
+
+    <h3>Watchlist</h3>
+
+    <div>
+        <a href="trainers.php"> - Continue Shopping</a>
+    </div>
+    <div>
+        <a href="adverts.php"> - Post Advert</a>
+    </div>
+
+<?php if (isset($view->deleted)) {
+    echo " <h1>'$view->deleted'</h1>";
+}
+?>
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Colour</th>
+            <th>Brand Type</th>
+            <th>Availability</th>
+            <th>Price</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+        <tbody>
+
+
+        <?php foreach ($view->wishlistData as $wishlistData) {
+
+
+            echo '<tr>
+<br/>
+                    <td>'
+                . $wishlistData['trainer_name'] .
+                '</td>
+                    <td>
+                        <img src="../images/Nike/' . $wishlistData['trainer_image'] . '" alt="no picture" height ="110" width="150"/> 
+                    </td>
+                    <td>
+                        ' . $wishlistData['trainer_feature'] . '
+                    </td>
+                    <td>
+                        ' . $wishlistData['trainer_type'] . '
+                    </td>
+                    <td>
+                        ' . $wishlistData['instock'] . '
+                    </td>
+                    <td>
+                        £' . $wishlistData['trainer_price'] . '
+                    </td>
+                    <td>
+                        ' . $wishlistData['advert_start_date'] . '
+                    </td>
+                    <td>
+                        ' . $wishlistData['advert_start_date'] . '
+                    </td>
+                    <td>
+                        <a href="wishlist.php?delete_id=' . $wishlistData['trainer_id'] .'">Remove Item</a>
+                    </td>
+                    
+                   </tr>';
+        } ?>
+        </tbody>
+    </table>
+
+
+<?php require('template/footer.phtml') ?>

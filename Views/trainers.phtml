@@ -1,0 +1,164 @@
+<?php require('template/header.phtml') ?>
+
+    <form>
+        Live Search Trainers: <input type="text" name="searchtext" placeholder="Search for Trainers" onkeyup="showHint(this.value)"/>
+
+        <ul class="list-group" id="txthint"></ul>
+    </form>
+
+    <p>Suggestions: <span id="txtHint"></span></p>
+
+
+    <ul id="resultsSelectionBox">
+
+    </ul>
+
+    <script>
+        function showHint(str) { //this is the showhint function
+            if (str.length == 0) {
+                document.getElementById("txtHint").innerHTML = ""; //this row requests the ID of the product of the textbox hint
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) { //this is
+                        var uic = document.getElementById("txtHint")
+                        uic.innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "liveSearch.php?q=" + str, true); //this connects to the liveSearch.php file, where "q" variable is connected to the database that gathers the information.
+                xmlhttp.send();
+            }
+        }
+    </script>
+
+
+
+    <br>
+    <table class="table table-hover">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <input type="text" name="search" placeholder="Search for trainers..."/>
+            <input type="Submit" name="searcht" value="Search"/>
+        <br>
+            <tr>
+                <div class="btn-group">
+                    <button class="btn btn-default" type="button" data-toggle="dropdown" name="sort">
+                        Sort By/Filters<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header"><b>Sort By</b></li>
+                        <li><a href="trainers.php?sort=lowToHigh">Lowest Price</a></li>
+                        <li><a href="trainers.php?sort=highToLow">Highest Price</a></li>
+                        <li><a href="trainers.php?sort=name(A-Z)">Name (A-Z)</a></li>
+                        <li><a href="trainers.php?sort=instock">Availability</a></li>
+                        <li class="divider"></li>
+
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-default" type="button" data-toggle="dropdown" name="sort">
+                        Sort By Brand<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header"><b>Filters</b></li>
+                        <li class="dropdown-header">Brand</li>
+                        <li><a href="trainers.php?sort=nike">Nike</a></li>
+                        <li><a href="trainers.php?sort=adidas">Adidas</a></li>
+                        <li><a href="trainers.php?sort=converse">Converse</a></li>
+                        <li><a href="trainers.php?sort=puma">Puma</a></li>
+                        <li class="divider"></li>
+
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-default" type="button" data-toggle="dropdown" name="sort">
+                        Sort By Price<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Price</li>
+                        <li><a href="trainers.php?sort=lessThan50">Less than £50</a></li>
+                        <li><a href="trainers.php?sort=lessThan100">Less than £100</a></li>
+                        <li><a href="trainers.php?sort=lessThan150">Less than £150</a></li>
+                        <li><a href="trainers.php?sort=lessThan200">Less than £200</a></li>
+                        <li><a href="trainers.php?sort=lessThan250">Less than £250</a></li>
+                        <li><a href="trainers.php?sort=lessThan300">Less than £300</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-default" type="button" data-toggle="dropdown" name="sort">
+                        Sort By Colour<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Colour</li>
+                        <li><a href="trainers.php?sort=Black">Black</a></li>
+                        <li><a href="trainers.php?sort=Blue">Blue</a></li>
+                        <li><a href="trainers.php?sort=Red">Red</a></li>
+                        <li><a href="trainers.php?sort=Green">Green</a></li>
+                        <li><a href="trainers.php?sort=Grey">Grey</a></li>
+                        <li><a href="trainers.php?sort=White">White</a></li>
+
+                    </ul>
+                </div>
+
+                <th>Name</th>
+                <th>Image</th>
+                <th>Colour</th>
+                <th>Brand Type</th>
+                <th>Availability</th>
+                <th>Price</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </form>
+        <tbody>
+        <?php foreach ($view->trainerDataSet as $trainersData) {
+        if(($trainersData-> getAdvert_end_Date()) >= (date("d/m/y"))) {
+            echo '<tr>
+                    <td>
+                        ' . $trainersData->getTrainer_name() . '
+                    </td>
+                    <td>
+                        <img src="../images/Nike/' . $trainersData->getTrainer_image() . '" alt="no picture" height ="110" width="150"/> 
+                    </td>
+                    <td>
+                        ' . $trainersData->getTrainer_feature() . '
+                    </td>
+                    <td>
+                        ' . $trainersData->getTrainer_type() . '
+                    </td>
+                    <td>
+                        ' . $trainersData->getTrainer_stock() . '
+                    </td>
+                    <td>
+                        £' . $trainersData->getTrainer_price() . '
+                    </td>
+                    <td>
+                     ' . $trainersData->getAdvert_start_Date() . '
+                    </td>
+                    <td> 
+                        ' . $trainersData->getAdvert_end_Date() . '
+                    </td>';
+
+        ?>
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo '<td>
+                        <a href="wishlist.php?id=' . $trainersData->getTrainer_id() . '">Add to wishlist</a>
+                    </td>
+                <td>
+                        <a href="wishlist.php?id=' . $trainersData->getTrainer_id() . '">Contact Seller</a>
+                    </td>';
+            }
+        }?>
+
+            <?php
+            echo '</tr>';
+
+
+        } ?>
+        </tbody>
+    </table>
+
+
+<?php require('template/footer.phtml') ?>

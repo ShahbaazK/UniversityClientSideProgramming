@@ -1,0 +1,58 @@
+<?php
+?>
+<?php
+require_once('template/header.phtml');
+?>
+    <br>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <input type="text" name="search" placeholder="Search for trainers..."/>
+        <input type="Submit" name="SearchLocation" value="Search"/>
+    </form>
+    <br>
+
+    <body>
+    <div id="map" style="width: 1150px; height: 775px;"></div>
+
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUUmp9AJiswuwGXNisjDvImmn6HSVdf7Y"> //this is the api key
+    </script>
+
+<script>
+
+var map = new google.maps.Map(
+    document.getElementById('map'),
+    {
+        zoom: 10, center: new google.maps.LatLng(53.4773483, -2.2518175), //this is the first position of the latitude and longitide of when a user goes to the map page
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+);
+var infowindow = new google.maps.InfoWindow();
+
+var marker;
+
+<?php foreach ($view->mapLocationDataSet as $mapLocationData) { ?>
+
+    </script>
+
+    <script>
+
+        for (i = 0; i < 30; i++) {
+            marker = new google.maps.Marker({ //this will show a marker on the map
+                position: new google.maps.LatLng(<?php echo $mapLocationData->getLatitude() ?>, <?php echo $mapLocationData->getLongitude() ?>),
+                map: map //this will get the lattitude and longtitude pinned on the map with a marker
+            });
+
+            google.maps.event.addListener(marker, 'mouseover', (function (marker, i) { //this is an affect of the info box of one marker will show up, when a user hovers away it will dissapear.
+                return function () {
+                    infowindow.setContent('<img style="max-height:400px; max-width:150px;" src="../images/Nike/<?php echo $mapLocationData->getTrainer_image() ?>" />' + '<?php echo $mapLocationData->getTrainer_name() ?>' + '<br/> <a href="showInfo.php?trainer_id=<?php echo $mapLocationData->getTrainer_id()?> &trainer_name=<?php echo $mapLocationData->getTrainer_name()?> &trainer_image=<?php echo $mapLocationData->getTrainer_image()?> &trainer_feature=<?php echo $mapLocationData->getTrainer_feature()?> &trainer_type=<?php echo $mapLocationData->getTrainer_type()?> &city=<?php echo $mapLocationData->getCity()?> &instock=<?php echo $mapLocationData->getTrainer_stock()?> &trainer_price=<?php echo $mapLocationData->getTrainer_price()?> &advert_start_date=<?php echo $mapLocationData->getAdvert_start_Date()?> &advert_end_date=<?php echo $mapLocationData->getAdvert_end_Date()?> ">Show Info</a>');
+                    //this is the size of the image displayed in the infobox. This also gets the information from each column of the database, to display in the showInfo page
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+
+        }
+
+    </script>
+
+<?php }
+?>

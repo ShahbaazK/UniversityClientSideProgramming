@@ -1,0 +1,39 @@
+<?php require('template/header.phtml') ?>
+
+    <h3> Live Search </h3>
+
+    <p>Start typing a trainers name in the input field below:</p>
+
+    <form>
+        Trainer Name: <input type="text" name="searchtext" placeholder="Search for Trainers" onkeyup="showHint(this.value)"/>
+
+        <ul class="list-group" id="txthint"></ul>
+    </form>
+
+    <p>Suggestions: <span id="txtHint"></span></p>
+
+
+    <ul id="resultsSelectionBox">
+
+    </ul>
+
+    <script>
+        function showHint(str) {
+            if (str.length == 0) {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var uic = document.getElementById("txtHint")
+                        uic.innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "liveSearch.php?q=" + str, true);
+                xmlhttp.send();
+            }
+        }
+    </script>
+<?php require('template/footer.phtml') ?>

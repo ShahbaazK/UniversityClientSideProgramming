@@ -1,0 +1,53 @@
+<?php require('template/header.phtml') ?>
+
+    <br>
+    <table class="table table-hover">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Colour</th>
+                <th>Brand Type</th>
+                <th>Location</th>
+                <th>Availability</th>
+                <th>Price</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </form>
+
+        <tbody>
+        <?php
+        if (!empty($_SESSION["showInfo"])) {
+
+            foreach ($_SESSION["showInfo"] as $keys => $values) {
+                ?>
+                <tr>
+
+                    <td><?php echo $values["trainerName"]; ?></td>
+                    <!--                    <td>--><?php
+                    ?>
+                    <td><img style="max-height:450px; max-width:250px;"
+                             src="../images/Nike/<?php echo $values["trainerImage"]; ?>"></td>
+                    <td><?php echo $values["trainerColour"]; ?></td>
+                    <td><?php echo $values["trainerBrandType"]; ?></td>
+                    <td><?php echo $values["trainerArea"]; ?></td>
+                    <td><?php echo $values["trainerAvailabilty"]; ?></td>
+                    <td><?php echo $values["trainerPrice"]; ?></td>
+                    <td><?php echo $values["trainerStartDate"]; ?></td>
+                    <td><?php echo $values["trainerEndDate"]; ?></td>
+
+                    <td><a href="showInfo.php?id=' . $trainersData->getTrainer_id() . '">Add to wishlist</span></a></td>
+                    <td><a href="showInfo.php?action=delete&trainer_id=<?php echo $values["trainerID"]; ?>"><span class="text-primary">Remove</span></a></td>
+                </tr>
+                <?php
+
+            }
+
+        }
+        ?>
+        </tbody>
+    </table>
+
+
+<?php require('template/footer.phtml') ?>

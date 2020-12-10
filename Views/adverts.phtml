@@ -1,0 +1,138 @@
+<?php require('template/header.phtml') ?>
+
+    <h3>Adverts</h3>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+
+        <!-- Website CSS style -->
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+        <!-- Website Font style -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+        <!-- Google Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+        <title>Register</title>
+    </head>
+    <body>
+    <div class="container col-xs-12">
+        <div class="row">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title">Post Advert</h1>
+                    <hr />
+                </div>
+            </div>
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+
+
+
+                    <div class="form-group">
+                        <label for="trainer_name" class="cols-sm-2 control-label">Trainer Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="trainer_name_postad" id="trainer_name_postad"  placeholder="Enter trainer name" />
+                                <?php echo "<p class='text-danger'>$trainernameError</p>";?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="trainer_image" class="cols-sm-2 control-label">Trainer Image</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+<!--                                <input type="text" class="form-control" name="trainer_image" id="trainer_image"  placeholder="Upload file" />-->
+                                <input type="file" class="form-control-file" name="filepicture" id="exampleFormControlFile1">
+                                <?php echo "<p class='text-danger'>$trainerimageError</p>";?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colour" class="col-sm-2 control-label">
+                            Choose Colour</label>
+                        <div class="col-sm-4">
+                        <select name="Colour">
+                            <option value="Black"><a href=>Black</a></option>
+                            <option value="Blue"><a href=>Blue</a></option>
+                            <option value="Red"><a href=>Red</a></option>
+                            <option value="Green"><a href=>Green</a></option>
+                            <option value="Grey"><a href=>Grey</a></option>
+                            <option value="White"><a href=>White</a></option>
+                            <?php echo "<p class='text-danger'>$trainercolourError</p>";?>
+                        </select>
+                    </div>
+                                </div>
+
+                    <div class="form-group">
+                        <label for="brand" class="col-sm-2 control-label">
+                            Choose Brand</label>
+                        <div class="col-sm-4">
+                        <select name="Brand">
+                            <option class="dropdown-header"></option>
+                            <option value="Nike"><a href=>Nike</a></option>
+                            <option value="Adidas"><a href=>Adidas</a></option>
+                            <option value="Converse"><a href=>Converse</a></option>
+                            <option value="Puma"><a href=>Puma</a></option>
+                            <option class="divider"></option>
+                            <?php echo "<p class='text-danger'>$trainerbrandError</p>";?>
+                        </select>
+                    </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price" class="cols-sm-2 control-label">Trainer Price</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="trainer_price" id="trainer_price_postad"  placeholder="Enter trainer price" />
+                                <?php echo "<p class='text-danger'>$trainerpriceError</p>";?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="advartStartDate" class="cols-sm-2 control-label">Advert start date</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="advert_start_date" id="advertStartDate"  placeholder="01/19/2017" />
+                                <?php echo "<p class='text-danger'>$advertStartDateError</p>";?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="advartEndDate" class="cols-sm-2 control-label">Advert End date</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="advert_end_date" id="advertEndDate"  placeholder="01/19/2017" />
+                                <?php echo "<p class='text-danger'>$advertEndDateError</p>";?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="location" class="cols-sm-2 control-label">Location</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="trainer_location" id="trainer_location"  placeholder="Enter trainer location" />
+                                <?php echo "<p class='text-danger'>$trainer_locationError</p>";?>
+                            </div>
+                    <div class="form-group ">
+                        <button type="submit" value="submit" name="submit" class="btn btn-primary btn-lg btn-block login-button">Publish</button>
+                        <?php echo "<p class='text-danger'></p>";?>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+    </body>
+    </html>
+
+<?php require('template/footer.phtml') ?>

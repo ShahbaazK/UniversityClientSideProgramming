@@ -1,0 +1,155 @@
+<?php require('template/header.phtml') ?>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+
+        <!-- Website CSS style -->
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+        <!-- Website Font style -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+        <!-- Google Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+        <title>Register</title>
+    </head>
+    <body>
+    <div class="container col-xs-12">
+        <div class="row">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title">Sign up!!</h1>
+                    <hr/>
+                </div>
+            </div>
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">First Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="first_name" id="first_name"
+                                       placeholder="Enter your Name"/>
+
+                                <?php echo "<p class='text-danger'>$firstnameError</p>"; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_name" class="cols-sm-2 control-label">Last Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa"
+                                                                   aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="last_name" id="last_name"
+                                       placeholder="Enter your last name"/>
+                                <?php echo "<p class='text-danger'>$lastnameError</p>"; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username" class="cols-sm-2 control-label">Username</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="u_name" id="u_name"
+                                       placeholder="Enter your Username"/>
+                                <?php echo "<p class='text-danger'>$nameError</p>"; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Email Adress</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                                   aria-hidden="true"></i></span>
+                                <input type="email" class="form-control" name="u_email" id="u_email"
+                                       placeholder="Email Address"/>
+                                <?php echo "<p class='text-danger'>$emailError</p>"; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                                   aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="u_password" id="u_password"
+                                       placeholder="Enter your Password"/>
+                                <?php echo "<p class='text-danger'>$password1Error</p>"; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                                   aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="u_cpassword" id="u_cpassword"
+                                       placeholder="Confirm your Password"/>
+                                <?php echo "<p class='text-danger'>$password2Error</p>"; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="cols-sm-2 control-label">Home Adress</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                                   aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="u_address" id="u_address"
+                                       placeholder="Home Address"/>
+                                <?php echo "<p class='text-danger'>$addressError</p>"; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="number" class="cols-sm-2 control-label">Phone number</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                                   aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="p_number" id="p_number"
+                                       placeholder="Phone Number"/>
+                                <?php echo "<p class='text-danger'>$phoneError</p>"; ?>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group ">
+                        <button type="submit" value="submit" name="submit"
+                                class="btn btn-primary btn-lg btn-block login-button">Register
+                        </button>
+                        <?php echo "<p class='text-danger'></p>"; ?>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+    </body>
+    </html>
+<?php echo "<p class='text-danger'>$useregister</p>"; ?>
+<?php if (isset($view->result)) : ?>
+    <p><?php echo $view->result; ?></p>
+<?php endif; ?>
+<?php require('template/footer.phtml') ?>
